@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <!-- محتوى السلة -->
+    <main>
+        <div class="cart-item">
+            <img src="product1.jpg" alt="منتج 1">
+            <h3>منتج 1</h3>
+            <p>السعر: 50 ريال</p>
+            <button class="increase-quantity">+</button>
+            <button class="decrease-quantity">-</button>
+            <span class="quantity">الكمية: 1</span>
+            <p class="total-price">الإجمالي: 50 ريال</p>
+        </div>
+        <!-- إضافة المزيد من العناصر بنفس الشكل -->
+
+        <div class="cart-summary">
+            <h3>الإجمالي: 100 ريال</h3>
+            <button class="checkout">إتمام الشراء</button>
+        </div>
+    </main>
+{% endblock %}

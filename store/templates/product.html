@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+    <!-- محتوى السلة -->
+    <main>
+        <div class="products-container">
+            <div class="product">
+                <img src="{{ product.img.url }}" class="img-fluid-start" alt="منتج 1">
+                <h3> {{ product.category}} </h3>
+                <p> $ {{ product.title }} </p>
+                <p> $ {{ product.price }} </p>
+                <p> {{ product.desc }} </p>
+                <br/>
+                <div class="row justify-content-center"> 
+                    <div class="col-md-2">Quantity:
+                        <br/><br/>
+                        <div class="col-md-2">
+                            <!-- هنا سيتم إضافة select box بدلاً من كلمة stuff -->
+                            <select class="form-select-sm" id="qty-cart">
+                                <option value="1"> 1 </option>
+                                <option value="2"> 2 </option>
+                                <option value="3"> 3 </option>
+                                <option value="4"> 4 </option>
+                                <option value="5"> 5 </option>
+                                <option value="6"> 6 </option>
+                                <option value="7"> 7 </option>
+                                <option value="8"> 8 </option>
+                                <option value="9"> 9 </option>
+                                <option value="10"> 10 </option>
+
+                            </select>
+                        </div>
+                    </div>
+                </div> 
+                <br/>
+                <a href="{% url 'index' %}" class= 'btn btn-secondry' > صفحة المنتجات  </a>
+                <Button type="button" value="{{ product.id }}" class="btn btn-secondry" id="add-cart" > اضافة الى السلة </Button>
+                
+            </div>
+        </div>
+    </main>
+
+
+    <script>
+        $(document).on('click', '#add-cart', function(e){
+            e.preventDefault();
+            $.ajax({
+                type: 'POST', 
+                url: '{% url 'cart_add' %}',
+                data: {
+                    product_id: $('#add-cart').val(),
+                    product_qty: $('#qty-cart option:selected').text(),
+                    csrfmiddlewaretoken: '{{ csrf_token }}',
+                    action: 'post'
+                },
+        
+                success: function(json){
+                    document.getElementById("cart_quantity").textContent = json.product_quantity
+                    console.log(json)
+                    // إضافة دالة alert هنا بعد نجاح الطلب
+                    alert('تم إضافة المنتج إلى السلة!');
+                },
+                error: function(xhr,errmsg, err){
+        
+                }
+        
+            }); 
+        
+        });
+        </script>
+        
+
+{% endblock %}

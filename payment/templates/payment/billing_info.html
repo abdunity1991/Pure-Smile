@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+    <main>
+         
+
+
+        <div class="cart-summary">
+            <div class="product">
+
+                {% for product in cart_products %}
+
+                    {{ product.title }} :
+                    $ {{ product.price }}
+                    <br/>
+                    <small>Quantity:
+                    {% for key, value in quantities.items %}
+                        {% if key == product.id|slugify %}
+                            {{ value }}
+                        {% endif%}
+                    {% endfor %}</small>
+
+                <br/><br/><br/>
+                    
+
+
+                {% endfor %}
+                <strong>Total:
+                 $ {{ totals }}</strong>
+                 <br/><br/> 
+                 <a href="{% url 'cart_summary' %}" class=""> تعديل الفاتورة </a>
+            </div>
+            
+            
+        </div>
+        <br/><br/><br/>
+        <div class="cart-summary">
+            <strong> معلومات الشراء </strong>
+            <br/>
+            
+             الاسم  : {{ shipping_info.shipping_name }} <br/>
+             الرقم  : {{ shipping_info.shipping_phone }} <br/>
+             العنوان الاول  : {{ shipping_info.shipping_address1 }} <br/>
+             العنوان الثاني  : {{ shipping_info.shipping_address2 }} <br/>
+             المدينة  : {{ shipping_info.shipping_city }} <br/>
+             اوقات التواجد  : {{ shipping_info.shipping_avaleble }} <br/>
+
+             <a href="{% url 'chekout' %}" class="">  تعديل البيانات </a>
+            
+        </div>
+
+
+
+
+        <a href="https://wa.me/963991880851?text=
+        *تفاصيل السلة:*
+        {% for product in cart_products %}
+            {% with slugified_id=product.id|slugify %}
+                {% for key, value in quantities.items %}
+                    {% if key == slugified_id %}
+                        - {{ product.title }} : ${{ product.price }}   العدد {{ value }}%0A
+                    {% endif %}
+                {% endfor %}
+            {% endwith %}
+        {% endfor %}
+        
+        *المجموع الكلي:* ${{ totals }}%0A%0A
+        
+        *معلومات الشراء:* %0A
+        - الاسم: {{ shipping_info.shipping_name }}%0A
+        - الرقم: {{ shipping_info.shipping_phone }}%0A
+        - العنوان 1: {{ shipping_info.shipping_address1 }}%0A
+        - العنوان 2: {{ shipping_info.shipping_address2 }}%0A
+        - المدينة: {{ shipping_info.shipping_city }}%0A
+        - أوقات التواجد: {{ shipping_info.shipping_avaleble }}%0A
+        " class="btn-confirm">تأكيد الشراء</a>
+        
+
+
+    
+    </main>
+
+    
+{% endblock %}

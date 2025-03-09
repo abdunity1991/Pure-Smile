@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+    <!-- محتوى السلة -->
+    <main>
+        <div class="products-container">
+            <div class="product">
+                <form method='POST' action='{% url 'search' %}'>
+                    {% csrf_token %}  
+                    <input type='text' class='form-control' placeholder=' اكتب للبحث ' name='searched'></input>    
+                    <br/><br/>
+                    <button type='submit' class='btn btn-secondry'> بحث عن منتج </button>
+                
+                </form>
+
+            </div>
+            
+        </div>
+        {% if searched %}
+
+            {% for product in searched %}
+                <div class="products-container">
+                    <div class="product">
+                        <img src="{{ product.img.url }}" alt="منتج 1">
+                        <h3>{{ product.title }}</h3>
+                        <p>{{ product.category }} : من شركة</p>
+                        <p> $ {{ product.price }}</p>
+                        <a class="btn btn-outline-dark mt auto" href="{% url 'product' product.id %}">عرض المنتج</a>
+                    </div>      
+                </div>
+            {% endfor %}
+
+    {% endif %}
+
+
+    </main>
+
+
+    
+
+{% endblock %}

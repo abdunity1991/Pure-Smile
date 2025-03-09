@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<!-- عرض المنتجات -->
+<main class="products-container">
+    {% for pr in products %}
+        <div class="product">
+            <img src="{{ pr.img.url }}" alt="منتج 1">
+            <h3>{{ pr.title }}</h3>
+            <p>{{ pr.category }} : من شركة</p>
+            <p> $ {{ pr.price }}</p>
+            
+            
+            <a class="btn btn-outline-dark mt auto" href="{% url 'product' pr.id %}">عرض المنتج</a>
+            
+
+        </div>      
+    {% endfor %}
+
+    <!-- إضافة المزيد من المنتجات بنفس الشكل -->
+</main>
+{% endblock %}

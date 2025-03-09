@@ -1,0 +1,140 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+    <main>
+                    
+        {% if cart_products %}
+            {% for product in cart_products %}
+            <div class="products-container">
+                <div class="product">                        
+                                <img src="{{ product.img.url }}" alt="منتج 1">
+                                <h3> {{ product.title }} </h3>
+                                <p> $ {{ product.price }} </p>   
+                                <br/><br/>
+                                <div class="row justify-content-center"> 
+                                    <div class="col-md-2">Quantity:
+                                        <br/><br/>
+                                        <div class="col-md-2">
+                                            <!-- هنا سيتم إضافة select box بدلاً من كلمة stuff -->
+                                            <select class="form-select-sm" id="select{{product.id}}">
+                                            
+                                                    
+                                                    {% for key, value in quantities.items %}
+                                                        {% if key == product.id|slugify %}
+                                                            <option selected>{{ value }} </option>
+                                                        {% endif%}
+                                                    {% endfor %}
+                                                    
+                                                
+                                                <option value="1"> 1 </option>
+                                                <option value="2"> 2 </option>
+                                                <option value="3"> 3 </option>
+                                                <option value="4"> 4 </option>
+                                                <option value="5"> 5 </option>
+                                                <option value="6"> 6 </option>
+                                                <option value="7"> 7 </option>
+                                                <option value="8"> 8 </option>
+                                                <option value="9"> 9 </option>
+                                                <option value="10"> 10 </option>
+                
+                                            </select>
+                                        </div>
+                                        <br/><br/>
+                                        
+                                        <button type="button" data-index="{{ product.id }}" 
+                                        class="btn btn-secondry update-cart"> تعديل </button>
+
+                                        <button type="button" data-index="{{ product.id }}" 
+                                        class="btn btn-danger delete-product"> حذف </button>
+                                    </div>
+                                </div> 
+
+                                <br/><br/>
+                            
+                </div>
+            </div>
+                    <!-- إضافة المزيد من العناصر بنفس الشكل -->
+            {% endfor %}
+        {% else %}
+                لا يوجد عناصر داخل السلة
+        {% endif %}
+
+
+        <div class="cart-summary">
+            <a href="{% url 'chekout' %}">  شراء </a>
+
+            <h3> ${{ totals }} : المجموع   </h3>
+            
+        </div>
+    </main>
+
+
+
+
+
+
+
+<script>
+
+    // Update Cart Button
+    $(document).on('click', '.update-cart', function(e){
+        e.preventDefault();
+        var productid =$(this).data('index');
+        $.ajax({
+            type: 'POST', 
+            url: '{% url 'cart_update' %}',
+            data: {
+                product_id: $(this).data('index'),
+                product_qty: $('#select' + productid + ' option:selected').text(),
+                csrfmiddlewaretoken: '{{ csrf_token }}',
+                action: 'post'
+            },
+    
+            success: function(json){
+                //document.getElementById("cart_quantity").textContent = json.product_quantity
+                //console.log(json)
+                location.reload();
+            
+            },
+            error: function(xhr,errmsg, err){
+    
+            }
+    
+        }); 
+    
+    })
+    
+    
+
+
+    // Delete Item From Cart
+    $(document).on('click', '.delete-product', function(e){
+        e.preventDefault();
+        
+        $.ajax({
+            type: 'POST', 
+            url: '{% url 'cart_delete' %}',
+            data: {
+                product_id: $(this).data('index'),
+                csrfmiddlewaretoken: '{{ csrf_token }}',
+                action: 'post'
+            },
+    
+            success: function(json){
+                location.reload();
+            
+            },
+            error: function(xhr,errmsg, err){
+    
+            }
+    
+        }); 
+    
+    })
+
+
+    </script>
+
+{% endblock %}

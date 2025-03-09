@@ -1,0 +1,360 @@
+/* تنسيق عام للصفحة */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+/* شريط التنقل */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: green;
+    padding: 10px 20px;
+}
+
+.navbar .logo-container {
+    background-color: white; /* خلفية بيضاء */
+    height: 120px;
+    border-radius: 120px; /* انحناء الزوايا للمربع */
+    display: inline-block; /* لجعل العنصر بحجم الصورة */
+}
+
+.navbar .logo-container img {
+    height: 150px;
+    width: auto;
+    display: block; /* إزالة المسافة أسفل الصورة */
+    cursor: pointer;
+}
+
+.search-bar {
+    padding: 5px;
+    width: 200px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    transition: width 0.3s ease;
+}
+
+.search-bar:focus {
+    width: 250px;
+    outline: none;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+}
+
+.nav-links li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 5px;
+    transition: color 0.3s ease;
+}
+
+.nav-links li a:hover {
+    color: darkgreen;
+}
+
+/* صفحة المنتجات */
+.products-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 20px;
+    padding: 20px;
+}
+
+.product {
+    background-color: white;
+    padding: 15px;
+    margin: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 220px;
+    text-align: center;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.product:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05);
+}
+
+.product img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.product h3 {
+    font-size: 1.2em;
+    margin: 10px 0;
+}
+
+.product p {
+    font-size: 1em;
+    margin: 5px 0;
+}
+
+.add-to-cart {
+    background-color: green;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.add-to-cart:hover {
+    background-color: darkgreen;
+}
+
+/* صفحة إنشاء حساب */
+.signup-form {
+    background-color: white;
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 30px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.signup-form label {
+    font-size: 1em;
+    margin: 10px 0 5px;
+    display: block;
+}
+
+.signup-form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+.signup-form button {
+    background-color: green;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1em;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.signup-form button:hover {
+    background-color: darkgreen;
+}
+
+/* صفحة السلة */
+.cart-item {
+    background-color: white;
+    padding: 15px;
+    margin: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.cart-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.cart-item h3 {
+    font-size: 1.2em;
+    margin: 10px 0;
+}
+
+.cart-item p {
+    font-size: 1em;
+    margin: 5px 0;
+}
+
+.cart-item .quantity {
+    font-size: 1em;
+    margin-top: 10px;
+}
+
+.cart-item .increase-quantity, .cart-item .decrease-quantity {
+    background-color: lightgray;
+    border: none;
+    padding: 8px;
+    font-size: 1.2em;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.cart-item .increase-quantity:hover, .cart-item .decrease-quantity:hover {
+    background-color: green;
+    color: white;
+}
+
+.cart-summary {
+    background-color: white;
+    padding: 20px;
+    margin: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    text-align: center;
+}
+
+.cart-summary h3 {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+}
+
+.cart-summary .checkout {
+    background-color: green;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2em;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.cart-summary .checkout:hover {
+    background-color: darkgreen;
+}
+
+
+/* تنسيق نموذج تسجيل الدخول */
+.login-form {
+    background-color: white;
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 30px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.login-form label {
+    font-size: 1em;
+    margin: 10px 0 5px;
+    display: block;
+}
+
+.login-form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+.login-form .form-text {
+    font-size: 0.9em;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.login-form button {
+    background-color: green;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1em;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+.login-form button:hover {
+    background-color: darkgreen;
+}
+
+/* تحسين مظهر صندوق الاختيار */
+.login-form .form-check {
+    display: flex;
+    align-items: center;
+}
+
+.login-form .form-check-input {
+    margin-right: 10px;
+}
+
+/* تنسيق الروابط بشكل عام */
+a {
+    color: green; /* اللون الأخضر للنص */
+    text-decoration: none; /* إزالة التسطير */
+    font-weight: bold; /* جعل النص غامقًا */
+    transition: color 0.3s ease, text-decoration 0.3s ease; /* تأثيرات انتقالية لتغيير اللون */
+}
+
+/* تأثير عند التمرير على الرابط */
+a:hover {
+    color: darkgreen; /* تغيير اللون عند التمرير */
+    text-decoration: underline; /* إضافة التسطير عند التمرير */
+}
+
+/* إذا كانت هناك فئة معينة مخصصة مثل "button-link" أو أي فئة أخرى مخصصة */
+a.button-link {
+    display: inline-block; /* تحويل الرابط إلى عنصر كتلة لتمكين إضافة التباعد */
+    padding: 10px 20px; /* إضافة حواف حول النص */
+    background-color: green; /* لون خلفية أخضر */
+    color: white; /* لون النص أبيض */
+    border-radius: 5px; /* حواف مستديرة */
+    text-align: center; /* محاذاة النص في المنتصف */
+    font-size: 1.1em; /* حجم النص */
+    text-decoration: none; /* إزالة التسطير */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* تأثير عند التمرير على رابط له الفئة "button-link" */
+a.button-link:hover {
+    background-color: darkgreen; /* تغيير لون الخلفية عند التمرير */
+    transform: scale(1.05); /* تكبير الرابط قليلاً عند التمرير */
+}
+
+
+/* تنسيق استجابة موبايل */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .search-bar {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .products-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .product {
+        width: 90%;
+        margin-bottom: 20px;
+    }
+
+    .signup-form {
+        width: 90%;
+    }
+
+    .cart-item {
+        width: 90%;
+    }
+}

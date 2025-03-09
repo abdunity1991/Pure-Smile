@@ -1,0 +1,34 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منتجات Pure Smile</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css'%}">
+</head>
+<body>
+
+<header>
+    <nav class="navbar">
+        <a>
+            <div class="logo-container">
+                <img  src="{% static 'image/logo.png' %}" alt="Pure Smile"  />
+            </div>
+        </a>
+        <ul class="nav-links">
+            
+        </ul>
+    </nav>
+
+</header>
+
+                    
+    <form method="POST" class="signup-form" action="{% url 'accounts' %}"> 
+        {% csrf_token %}
+        {{ form.as_p }}
+            <button type="submit" class='btn btn-secondary' >إنشاء حساب</button>
+    </form>
+
+</body>
+</html>
